@@ -1,7 +1,12 @@
+$baseC: rgb(199, 237, 228);
+$primC: rgb(130, 11, 138);
+$textC: rgb(103, 42, 78);
+
 body{
-    background-color: rgb(133, 200, 239);
+    background-color: $primC;
+    color: $textC;
 }
 
 div{
-    background-color: #ffffff;
+    background-color: $baseC;
 }

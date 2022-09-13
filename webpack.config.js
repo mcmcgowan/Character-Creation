@@ -1,34 +1,55 @@
+
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/client/index.js',
+
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'index_bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
+        filename: 'bundle.js',
     }, 
+    devtool: 'eval-source-map',
+    mode: 'development',
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+        hot: true,
+        historyApiFallback: true,
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+            publicPath: "/"
+        },
+        headers: {'Access-Control-Allow-Origin': "*"},
+        proxy: {
+            '/api/**': {
+                target: 'http://localhost:3000',
+                secure: false
+            }
+        }
+    },
     module: {
         rules: [
             { 
-                test: /\.js$/,
+                test: /.jsx?$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
+                loader: 'babel-loader',
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },
-            {
-                test: /\.scss$/,
+                test: /.s?css$/,
+                exlude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }          
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html' 
+            template: './src/client/index.html'
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx', 'json']
+    }
 }
