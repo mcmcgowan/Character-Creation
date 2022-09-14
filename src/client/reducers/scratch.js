@@ -1,6 +1,6 @@
 
 function rollXDrop1(numDice, sides){
-    const roll4 = {};
+    const roll = [];
 
     let currMin = Infinity;
     let currMinInd;
@@ -12,27 +12,31 @@ function rollXDrop1(numDice, sides){
     }
 
     for (let i = 0; i < numDice; i ++){
-        roll4[i] = {
-            value: randomDice(sides),
+        const value = randomDice(sides);
+        
+        roll.push( {
+            value,
             color: 'green'
-        }
-        if (roll4[i].value < currMin) {
-            currMin = roll4[i].value;
+        });
+        if (value < currMin) {
+            currMin = value;
             currMinInd = i
         }
     }
+    roll[currMinInd].color = "red";
 
-    roll4[currMinInd].color = "red";
+    roll.map(ele => {
+        if (ele.color === "green") sum += ele.value
+    });
 
-    for (let key in roll4) {
-        if (roll4[key].color === "green") sum += roll4[key].value
-    } 
-
-    roll4.sum = sum;
+    const rollAndSumObj = {
+        dice: roll,
+        sum
+    }
     
-    return roll4;
+    return rollAndSumObj;
 }
 
+console.log(rollXDrop1(3,6))
 
-
-console.log(rollXDrop1(4,6))
+export default rollXDrop1;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = 'ADD CHARACTER CREATOR MONGO DB URI';
+const MONGO_URI = 'mongodb+srv://mcmcgowan:justapassword@cluster0.pfvht1l.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI, {
     //parses URI

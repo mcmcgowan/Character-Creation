@@ -1,6 +1,5 @@
 import React from "react";
-
-
+//import rollXDrop1 from "../reducers/scratch";
 
 const abilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 const abilityComps = [];
@@ -23,7 +22,16 @@ abilities.map(ele => {
 const AbilityRoller = (props) => {
     return (
         <div class="container">
-        {abilityComps}            
+            <div>
+                {abilityComps} 
+            </div>
+            <div class="ability_info_containers">
+                <button /*onClick={rollXDrop1}*/>Roll</button>
+                <div id="dice_tray">
+                    <div>Dice Go Here{/*diceroll*/}</div>
+                    <div class = "score_box">SUM</div>
+                </div>
+            </div>           
         </div>
 
     )

@@ -24,6 +24,11 @@ div{
     margin: .5em;
 }
 
+#dice_tray{
+    display: flex;
+    flex-direction: row;
+}
+
 .container{
     background: $lightC;
     width: 400px;

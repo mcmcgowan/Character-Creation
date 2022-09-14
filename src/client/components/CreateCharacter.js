@@ -14,11 +14,13 @@ const CreateCharacter = props => {
             </div>
             <div>
                 <Link to='/view'>
-                    <button>SaveChanges</button>
+                    <button>Submit Character</button>
                 </Link>
                 <Link to='/'>
-                    <button>Discard and navigate back to menu</button>
+                    <button>Navigate to Menu
+                    </button>
                 </Link>
+
             </div>        
         </>
 
