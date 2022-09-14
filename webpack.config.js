@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const APP_DIR = path.resolve(__dirname, './src/client')
+
 module.exports = {
     entry: './src/client/index.js',
 
@@ -39,7 +41,7 @@ module.exports = {
             },
             {
                 test: /.s?css$/,
-                exlude: /node_modules/,
+                exclude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }          
         ]

@@ -12,10 +12,12 @@ app.use(bodyParser.json()); //parses any json requests
 app.use(bodyParser.urlencoded({ extended: true})); //parses any requests with url encoded parameters in body
 
 //handle requests for static files, don't have any currently
-
+//app.use(express.static(__dirname + '/public'))
 //define route handlers
 //serves the menu page
-//app.get('/')
+app.get('/', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname + '../client/index.html'))
+})
 
 app.use('/api', apiRouter);
 
