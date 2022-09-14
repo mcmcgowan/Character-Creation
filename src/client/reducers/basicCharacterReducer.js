@@ -1,12 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
-//import { addBook, deleteBook } from "../actions/bookActions";
-import { updateBasicCharacter } from "../actions/characterActions";
+
+import { updateBasicCharacter } from "../actions/actions";
 
 const initialState = {
     playerName: '',
     characterName: '',
-    race: '',
-    className: '',
+    race: 'Please Select in Race Box Below',
+    className: 'Please Select in Class Box Below',
     level: '',
     background: '',
     alignment: ''
@@ -24,15 +24,5 @@ const basicCharacterReducer = createReducer(initialState, (builder) => {
             state.alignment = action.payload.alignment
         })
 })
-
-// const bookReducer = createReducer(initialState, (builder) => {
-//     builder
-//         .addCase(addBook, (state, action) => {
-//             state.books.push(action.payload)
-//         })
-//         .addCase(deleteBook, (state, action) => {
-//             state.books = state.books.filter(book !== action.payload.id)
-//         })
-// })
 
 export default basicCharacterReducer;

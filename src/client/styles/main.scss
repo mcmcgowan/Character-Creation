@@ -24,14 +24,35 @@ div{
     margin: .5em;
 }
 
-#dice_tray{
+#dice_tray, #dice_tray div{
     display: flex;
     flex-direction: row;
 }
 
+.dice_totals{
+    width: 50px;
+    height: 50px;
+    background-color: $forestC;
+    color: $lightC;
+    margin: 10px;
+}
+
+#score_tray{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.dice_box {
+    width: 50px;
+    height: 50px;
+    background-color: $brightC;
+    color: $lightC;
+    margin: 10px;
+}
+
 .container{
     background: $lightC;
-    width: 400px;
+    width: 500px;
 }
 
 .wrapper{

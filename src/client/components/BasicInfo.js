@@ -1,24 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import { updateBasicCharacter } from "../actions/characterActions";
-
-//these should be dynamically pulled from the api in case more classes or races were added to SRD
-const classes = ['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'rougue', 'sorcerer', 'warlock', 'wizard'];
-const classComps = [];
-classes.map(ele => {
-    classComps.push(<option value={ele}>{ele}</option>);
-});
-
-const races= ['dragonborn', 'dwarf', 'elf', 'gnome', 'half-elf', 'half-orc', 'halfling', 'human', 'tiefling'];
-const raceComps = [];
-races.map(ele => {
-    raceComps.push(<option value={ele}>{ele}</option>);
-});
+import { updateBasicCharacter } from "../actions/actions";
 
 
 const BasicInfo = props => {
+
     const [playerName, setPlayerName] = useState('');
     const [characterName, setCharacterName] = useState('');
     const [race, setRace] = useState('');
@@ -27,6 +15,9 @@ const BasicInfo = props => {
     const [background, setBackground] = useState('');
     const [alignment, setAlignment] = useState('');
 
+    const raceField = useSelector((state) => state.charInfo.race)
+    const classField = useSelector((state) => state.charInfo.className)
+
     const dispatch = useDispatch();
 
     const addCharacterInfoHandler = (e) => {
@@ -34,14 +25,28 @@ const BasicInfo = props => {
         dispatch(updateBasicCharacter({
             playerName,
             characterName,
-            className,
             race,
+            className,
             level,
             background,
             alignment
         }))
     }
 
+    //these should be dynamically pulled from the api in case more classes or races were added to SRD
+    const classes = ['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'rougue', 'sorcerer', 'warlock', 'wizard'];
+    const classComps = [];
+    classes.map(ele => {
+        classComps.push(<option value={ele}>{ele}</option>);
+    });
+
+    const races= ['dragonborn', 'dwarf', 'elf', 'gnome', 'half-elf', 'half-orc', 'halfling', 'human', 'tiefling'];
+    const raceComps = [];
+    races.map(ele => {
+        raceComps.push(<option value={ele}>{ele}</option>);
+    });
+
+    
     return (
         <div class="container">
             <div class="info_containers" id="form_info">
@@ -57,11 +62,11 @@ const BasicInfo = props => {
                 </div>   
                 <div>
                     <label for='race'>Race:</label>
-                    <input type="text" id="race" name="race" value={race} onChange={(e) => setRace(e.target.value)}></input>
+                    <div id="raceField" onChange={(e) => setRace(e.target.value)}>{raceField} </div>
                 </div> 
                 <div>
                     <label for='class'>Class:</label>
-                    <input type="text" id="class" name="class" value={className} onChange={(e) => setClassName(e.target.value)}></input>
+                    <div id="classField" onChange={(e) => setClassName(e.target.value)}>{classField}</div>
                 </div>   
                 <div>
                     <label for='level'>Level:</label>
@@ -76,15 +81,15 @@ const BasicInfo = props => {
                     <input type="text" id="alignment" name="alignment" value={alignment} onChange={(e) => setAlignment(e.target.value)}></input>
                 </div>                 
                 </form>
-                <button onClick={addCharacterInfoHandler}>Update State</button>
             </div>
+
             <div class="info_containers" id="race_info">
                 <label for="raceDD">Race:</label>
-                <select id="raceDD">
+                <select id="raceDD" value={race} onChange={(e) => setRace(e.target.value)}>
                     <option value = "" disabled selected>Select Race</option>
                     {raceComps}
                 </select>
-                <button>Apply Changes</button>
+                
                 <h4>Race Description</h4>
                 <div>Blurb here from API</div>
                 <h4>Racial Bonuses</h4>
@@ -94,11 +99,11 @@ const BasicInfo = props => {
             </div>
             <div class="info_containers" id="class_info">
                 <label for="classDD">Class:</label>
-                <select id="classDD">
-                    <option value = "" disabled selected>See Classes</option>
+                <select id="classDD" value={className} onChange={(e) => setClassName(e.target.value)} >
+                    <option value = "" disabled selected>Select Classes</option>
                     {classComps}
                 </select>
-                <button>Apply Changes</button>
+
                 <h4>Class Description</h4>
                 <div>Blurb here from API</div>
                 <h4>Preferred Abilities</h4>
@@ -108,6 +113,7 @@ const BasicInfo = props => {
                 <h4>Proficiency Bonuses</h4>
                 <div>Blurb here from API</div>
             </div>
+            <button onClick={addCharacterInfoHandler}>Update State</button>
         </div>
     )
 }

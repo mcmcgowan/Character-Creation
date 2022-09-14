@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-import bookReducer from './reducers/basicCharacterReducer';
-import { updateBasicCharacter } from './actions/characterActions';
 import basicCharacterReducer from './reducers/basicCharacterReducer';
+import rollAbilitiesReducer from './reducers/rollAbilitiesReducer';
 
 const store = configureStore({
-    reducer: {charInfo: basicCharacterReducer }
+    reducer: {
+        charInfo: basicCharacterReducer,
+        rolls: rollAbilitiesReducer
+    }
 });
 export default store;

@@ -37,6 +37,4 @@ function rollXDrop1(numDice, sides){
     return rollAndSumObj;
 }
 
-console.log(rollXDrop1(3,6))
-
 export default rollXDrop1;
