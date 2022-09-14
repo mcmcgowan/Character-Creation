@@ -1,12 +1,43 @@
-$baseC: rgb(199, 237, 228);
-$primC: rgb(130, 11, 138);
-$textC: rgb(103, 42, 78);
+$brightC: #3CC47C;
+$forestC: #1E392A;
+$lightC: #E9C893;
+$tinC: #929081;
 
 body{
-    background-color: $primC;
-    color: $textC;
+    background-color: $brightC;
+    color: $forestC;
 }
 
 div{
-    background-color: $baseC;
+    padding: .25em;
+}
+
+.info_containers{
+    background-color: white;
+    margin: .5em;
+}
+
+.ability_info_containers{
+    display:flex;
+    flex-direction: row;
+    background-color: white;
+    margin: .5em;
+}
+
+.container{
+    background: $lightC;
+    width: 400px;
+}
+
+.wrapper{
+ display: flex;
+ flex-wrap: wrap;
+ flex-direction: row;   
+}
+
+.score_box{
+    width: 75px;
+    height: 75px;
+    background-color: $forestC;
+    color: $lightC;
 }
