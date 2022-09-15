@@ -38,6 +38,7 @@ const AbilityRoller = (props) => {
         dispatch(addAbilities({ str, dex, con, int, wis, cha}))
     }
 
+    //TODO Need to add API information once I figure out how to access deeply nested properties
 
     return (
         <div class="container">     

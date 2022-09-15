@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser')
-
+const mongoose = require('mongoose');
+const Character = require('./models/characterModels')
 
 const app = express();
 
@@ -10,6 +11,12 @@ const PORT = 3000;
 
 app.use(bodyParser.json()); //parses any json requests
 app.use(bodyParser.urlencoded({ extended: true})); //parses any requests with url encoded parameters in body
+
+mongoose.connect("mongodb+srv://mcmcgowan:campaignpass@cluster0.pfvht1l.mongodb.net/?retryWrites=true&w=majority")
+const db = mongoose.connection;
+db.on('error', (error) => console.log(error))
+db.once('open', () => console.log('connected to campaignDB'))
+app.use(express.json())
 
 //handle requests for static files, don't have any currently
 //app.use(express.static(__dirname + '/public'))

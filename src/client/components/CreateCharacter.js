@@ -5,6 +5,8 @@ import AbilityRoller from './AbilityRoller';
 
 
 const CreateCharacter = props => {
+
+    //TODO create reducer to send charInfo and aScore state to DB using Character Schema
     return (
         <>
             <div class="wrapper">
@@ -17,8 +19,7 @@ const CreateCharacter = props => {
                     <button>Submit Character</button>
                 </Link>
                 <Link to='/'>
-                    <button>Navigate to Menu
-                    </button>
+                    <button>Navigate to Menu</button>
                 </Link>
 
             </div>        
