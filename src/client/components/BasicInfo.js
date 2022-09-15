@@ -39,7 +39,7 @@ const BasicInfo = props => {
     let raceDataStr = JSON.stringify(raceData);
     const { data: classData, error: classError, isLoading: classIsLoading } = useGetClassDataQuery(className);
     let classDataStr = JSON.stringify(classData)
-    
+
     
     //these should be dynamically pulled from the api in case more classes or races were added to SRD
     const classes = ['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'rougue', 'sorcerer', 'warlock', 'wizard'];
@@ -55,7 +55,9 @@ const BasicInfo = props => {
     });
     
     return (
-        <div class="container">
+
+        <div class="container">        
+            <h3>Basic Character Info</h3>
             <div class="info_containers" id="form_info">
                 <form>
                 <div>

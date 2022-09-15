@@ -12,6 +12,10 @@ div{
     padding: .25em;
 }
 
+h4{
+    margin: .25em;
+}
+
 .info_containers{
     background-color: white;
     margin: .5em;
@@ -23,6 +27,27 @@ div{
     display:flex;
     flex-direction: row;
     background-color: white;
+    min-height: 100px;
+    margin: .5em;
+}
+.ability_info_containers div{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    margin: .5em;
+}
+.ability_info_containers div form{
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    width: 50px;
+}
+
+.ability_info_trays{
+    display:flex;
+    flex-direction: row;
+    background-color: white;
+    min-height: 100px;
     margin: .5em;
 }
 
