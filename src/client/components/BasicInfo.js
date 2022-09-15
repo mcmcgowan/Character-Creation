@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import { updateBasicCharacter } from "../actions/actions";
+import { selectRace, updateBasicCharacter } from "../actions/actions";
 
 
 const BasicInfo = props => {
@@ -32,6 +32,19 @@ const BasicInfo = props => {
             alignment
         }))
     }
+
+    const selectRaceHandler = (e) => {
+        const raceMenu = document.getElementById('raceDD');
+        const selectedRace = raceMenu.value;
+        console.log(selectedRace)
+        dispatch(selectRace({selectedRace}))
+    }
+
+    const [raceDescription, setRaceDescription] = useState('')
+    const [racialBonuses, setRacialBonuses] = useState('')
+    const [racialFeats, setRacialFeats] = useState('')
+
+
 
     //these should be dynamically pulled from the api in case more classes or races were added to SRD
     const classes = ['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'rougue', 'sorcerer', 'warlock', 'wizard'];
@@ -89,6 +102,7 @@ const BasicInfo = props => {
                     <option value = "" disabled selected>Select Race</option>
                     {raceComps}
                 </select>
+                <button onClick={selectRaceHandler}>Update Info</button>
                 
                 <h4>Race Description</h4>
                 <div>Blurb here from API</div>
