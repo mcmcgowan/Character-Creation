@@ -1,16 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-import { applyMiddleware } from 'redux';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
+
 
 import basicCharacterReducer from './reducers/basicCharacterReducer';
 import rollAbilitiesReducer from './reducers/rollAbilitiesReducer';
-import selectRaceReducer from './reducers/selectRaceReducer';
+import { dndApi } from './services/dnd';
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         charInfo: basicCharacterReducer,
         rolls: rollAbilitiesReducer,
-        race: selectRaceReducer,
+        [dndApi.reducerPath]: dndApi.reducer,
     },
-});
-export default store;
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware().concat(dndApi.middleware),
+    
+})
+
+setupListeners(store.dispatch)

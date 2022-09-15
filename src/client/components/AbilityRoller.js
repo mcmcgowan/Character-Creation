@@ -1,25 +1,9 @@
+import { nanoid } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { rollAbilities } from "../actions/actions";
 
-const abilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-const abilityComps = [];
-abilities.map(ele => {
-    abilityComps.push(
-        <div class="ability_info_containers">
-            <div>
-                <div>{ele.toUpperCase()}</div>
-                <div class="score_box">SCORE</div>
-                <div>Mod</div>          
-            </div>
-            <div>
-                <h4>Ability Description</h4>
-                Blurb from Api
-            </div>
-        </div>        
-    );
-});
+
 
 
 
@@ -38,7 +22,25 @@ const AbilityRoller = (props) => {
 
     const lastRoll = useSelector((state) => state.rolls.lastRoll)
     const diceRollComps = lastRoll.map(ele => <div class ="dice_box">{ele.value}</div>)
+    
+    const abilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+    const abilityComps = [];
 
+    abilities.map(ele => {
+        abilityComps.push(
+            <div class="ability_info_containers" key={nanoid()}>
+                <div>
+                    <div>{ele.toUpperCase()}</div>
+                    <div class="score_box">SCORE</div>
+                    <div>Mod</div>          
+                </div>
+                <div>
+                    <h4>Ability Description</h4>
+                    Blurb from Api
+                </div>
+            </div>        
+        );
+    });
 
     return (
         <div class="container">

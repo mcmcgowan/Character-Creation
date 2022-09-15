@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { nanoid } from "@reduxjs/toolkit";
 
 import { selectRace, updateBasicCharacter } from "../actions/actions";
+import { useGetRaceDataQuery, useGetClassDataQuery } from "../services/dnd";
 
 
 const BasicInfo = props => {
@@ -33,32 +34,25 @@ const BasicInfo = props => {
         }))
     }
 
-    const selectRaceHandler = (e) => {
-        const raceMenu = document.getElementById('raceDD');
-        const selectedRace = raceMenu.value;
-        console.log(selectedRace)
-        dispatch(selectRace({selectedRace}))
-    }
-
-    const [raceDescription, setRaceDescription] = useState('')
-    const [racialBonuses, setRacialBonuses] = useState('')
-    const [racialFeats, setRacialFeats] = useState('')
-
-
-
+    //TODO Currently having issues with accessing specific data due to response being deeply nested object. need to handle somehow
+    const { data: raceData, error: raceError, isLoading: raceIsLoading } = useGetRaceDataQuery(race);
+    let raceDataStr = JSON.stringify(raceData);
+    const { data: classData, error: classError, isLoading: classIsLoading } = useGetClassDataQuery(className);
+    let classDataStr = JSON.stringify(classData)
+    
+    
     //these should be dynamically pulled from the api in case more classes or races were added to SRD
     const classes = ['barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk', 'paladin', 'ranger', 'rougue', 'sorcerer', 'warlock', 'wizard'];
     const classComps = [];
     classes.map(ele => {
-        classComps.push(<option value={ele}>{ele}</option>);
+        classComps.push(<option value={ele} key={nanoid()}>{ele}</option>);
     });
 
     const races= ['dragonborn', 'dwarf', 'elf', 'gnome', 'half-elf', 'half-orc', 'halfling', 'human', 'tiefling'];
     const raceComps = [];
     races.map(ele => {
-        raceComps.push(<option value={ele}>{ele}</option>);
+        raceComps.push(<option value={ele} key={nanoid()}>{ele}</option>);
     });
-
     
     return (
         <div class="container">
@@ -99,33 +93,20 @@ const BasicInfo = props => {
             <div class="info_containers" id="race_info">
                 <label for="raceDD">Race:</label>
                 <select id="raceDD" value={race} onChange={(e) => setRace(e.target.value)}>
-                    <option value = "" disabled selected>Select Race</option>
+                    <option value = "">Select Race</option>
                     {raceComps}
                 </select>
-                <button onClick={selectRaceHandler}>Update Info</button>
-                
                 <h4>Race Description</h4>
-                <div>Blurb here from API</div>
-                <h4>Racial Bonuses</h4>
-                <div>Blurb here from API</div>
-                <h4>Racial Feats</h4>
-                <div>Blurb here from API</div>
+                <div>{raceDataStr}</div>
             </div>
             <div class="info_containers" id="class_info">
                 <label for="classDD">Class:</label>
                 <select id="classDD" value={className} onChange={(e) => setClassName(e.target.value)} >
-                    <option value = "" disabled selected>Select Classes</option>
+                    <option value = "">Select Classes</option>
                     {classComps}
                 </select>
-
                 <h4>Class Description</h4>
-                <div>Blurb here from API</div>
-                <h4>Preferred Abilities</h4>
-                <div>Blurb here from API</div>
-                <h4>Hit Dice</h4>
-                <div>Blurb here from API</div>
-                <h4>Proficiency Bonuses</h4>
-                <div>Blurb here from API</div>
+                <div>{classDataStr}</div>
             </div>
             <button onClick={addCharacterInfoHandler}>Update State</button>
         </div>

@@ -2,6 +2,7 @@ import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import { selectRace } from "../actions/actions";
 import axios from "axios";
 
+
 const initialState = {
     description: '',
     bonuses: '',
@@ -22,5 +23,6 @@ const selectRaceReducer = createReducer(initialState, (builder) => {
             else alert("Hey you need to select a race")
         })
 })
+
 
 export default selectRaceReducer;
