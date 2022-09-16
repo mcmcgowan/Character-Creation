@@ -6,26 +6,26 @@ POST http://localhost:3000/api/
 Content-Type: application/json
 
 {
-    "playerName": "Matthew testing from router",
-    "charName": "Thorival",
-    "race": "human",
+    "playerName": "Sam",
+    "charName": "Scanlan Shorthalt",
+    "race": "gnome",
     "class": {
-        "className": "wizard",
+        "className": "bard",
         "classLevel": 1
     },
-    "background": "nobel",
-    "alignment": "LG",
+    "background": "Performer",
+    "alignment": "CG",
     "abilities": {
-        "str": 11,
+        "str": 13,
         "dex": 11,
-        "con": 11,
-        "int": 1,
-        "wis": 11,
-        "cha": 11
+        "con": 16,
+        "int": 16,
+        "wis": 7,
+        "cha": 22
         }
 }
 ###
-DELETE http://localhost:3000/api/6323744a59b82dacadde6e71
+DELETE http://localhost:3000/api/63237843d3f965161423e5e2
 ###
 PATCH http://localhost:3000/api/63237843d3f965161423e5e2
 Content-Type: application/json

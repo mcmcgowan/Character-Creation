@@ -35,10 +35,10 @@ const BasicInfo = props => {
     }
 
     //TODO Currently having issues with accessing specific data due to response being deeply nested object. need to handle somehow
-    // const { data: raceData, error: raceError, isLoading: raceIsLoading } = useGetRaceDataQuery(race);
-    // let raceDataStr = JSON.stringify(raceData);
-    // const { data: classData, error: classError, isLoading: classIsLoading } = useGetClassDataQuery(className);
-    // let classDataStr = JSON.stringify(classData)
+    const { data: raceData, error: raceError, isLoading: raceIsLoading } = useGetRaceDataQuery(race);
+    let raceDataStr = JSON.stringify(raceData);
+    const { data: classData, error: classError, isLoading: classIsLoading } = useGetClassDataQuery(className);
+    let classDataStr = JSON.stringify(classData)
 
     
     //these should be dynamically pulled from the api in case more classes or races were added to SRD
@@ -99,7 +99,7 @@ const BasicInfo = props => {
                     {raceComps}
                 </select>
                 <h4>Race Description</h4>
-                <div>{/*raceDataStr*/}</div>
+                <div>{raceDataStr}</div>
             </div>
             <div class="info_containers" id="class_info">
                 <label for="classDD">Class:</label>
@@ -108,7 +108,7 @@ const BasicInfo = props => {
                     {classComps}
                 </select>
                 <h4>Class Description</h4>
-                <div>{/*classDataStr*/}</div>
+                <div>{classDataStr}</div>
             </div>
             <button onClick={addCharacterInfoHandler}>Update State</button>
         </div>

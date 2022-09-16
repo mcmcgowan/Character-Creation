@@ -6,6 +6,7 @@ import basicCharacterReducer from './reducers/basicCharacterReducer';
 import rollAbilitiesReducer from './reducers/rollAbilitiesReducer';
 import addAbilitiesReducer from './reducers/addAbilitiesReducer';
 import { dndApi } from './services/dnd';
+//import { mongoApi } from './services/mongo';
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         rolls: rollAbilitiesReducer,
         aScores: addAbilitiesReducer,
         [dndApi.reducerPath]: dndApi.reducer,
+        /*[mongoApi.reducerPath]: mongoApi.reducer*/
     },
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(dndApi.middleware),
