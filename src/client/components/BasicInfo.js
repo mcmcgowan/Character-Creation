@@ -37,6 +37,8 @@ const BasicInfo = props => {
     //TODO Currently having issues with accessing specific data due to response being deeply nested object. need to handle somehow
     const { data: raceData, error: raceError, isLoading: raceIsLoading } = useGetRaceDataQuery(race);
     let raceDataStr = JSON.stringify(raceData);
+    // let raceDataLang;
+    // if (raceData) raceDataLang = raceData.language
     const { data: classData, error: classError, isLoading: classIsLoading } = useGetClassDataQuery(className);
     let classDataStr = JSON.stringify(classData)
 

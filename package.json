@@ -18,6 +18,9 @@
   "author": "Matthew McGowan",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.14",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "concurrently": "^7.4.0",
